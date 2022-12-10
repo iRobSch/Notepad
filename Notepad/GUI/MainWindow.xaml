@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
     <Grid
-        x:Name="MainGrid">
+        x:Name="MainGrid" x:FieldModifier="public">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
