@@ -22,29 +22,58 @@
         </MenuBarItem>
         <MenuBarItem
             Title ="Edit">
-            <MenuFlyoutItem Text="Redo"/>
-            <MenuFlyoutItem Text="Undo"/>
+            <MenuFlyoutItem  
+                x:Name="RedoItem"
+                x:FieldModifier="public"
+                Text="Redo"/>
+            <MenuFlyoutItem  
+                x:Name="UndoItem"
+                Text="Undo"/>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Cut"/>
-            <MenuFlyoutItem Text="Copy"/>
-            <MenuFlyoutItem Text="Paste"/>
-            <MenuFlyoutItem Text="Delete"/>
+            <MenuFlyoutItem  
+                x:Name="CutItem"
+                Text="Cut"/>
+            <MenuFlyoutItem  
+                x:Name="CopyItem"
+                Text="Copy"/>
+            <MenuFlyoutItem  
+                x:Name="PasteItem"
+                Text="Paste"/>
+            <MenuFlyoutItem  
+                x:Name="DeleteItem"
+                Text="Delete"/>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Select all"/>
-            <MenuFlyoutItem Text="Set read-only"/>
+            <MenuFlyoutItem  
+                x:Name="SelectItem"
+                Text="Select all"/>
+            <MenuFlyoutItem 
+                x:Name="ReadItem"
+                Text="Set read-only"/>
         </MenuBarItem>
         <MenuBarItem
             Title="Search">
-            <MenuFlyoutItem Text="Find"/>
-            <MenuFlyoutItem Text="Find next"/>
-            <MenuFlyoutItem Text="Find previous"/>
-            <MenuFlyoutItem Text="Replace"/>
+            <MenuFlyoutItem 
+                x:Name="FindItem"
+                Text="Find"/>
+            <MenuFlyoutItem 
+                x:Name="FindNextItem"
+                Text="Find next"/>
+            <MenuFlyoutItem 
+                x:Name="FindPrevItem"
+                Text="Find previous"/>
+            <MenuFlyoutItem 
+                x:Name="ReplaceItem"
+                Text="Replace"/>
         </MenuBarItem>
         <MenuBarItem
             Title = "Settings">
-            <MenuFlyoutItem Text="Preferences"/>
+            <MenuFlyoutItem 
+                x:Name="PreferencesItem"
+                Text="Preferences"/>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Import"/>
+            <MenuFlyoutItem 
+                x:Name="ImportItem"
+                Text="Import"/>
         </MenuBarItem>
         <MenuBarItem
             Title="Help">

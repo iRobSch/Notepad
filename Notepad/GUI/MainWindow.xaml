@@ -18,11 +18,12 @@
         </Grid.RowDefinitions>
 
         <controls:MenuBar
+            x:Name="MenuBar"
             VerticalAlignment="Top"
             HorizontalAlignment="Stretch"
             Grid.Row="0"/>
         <controls:Notepad
-            x:Name="TextBox"
+            x:Name="Notepad"
             Grid.Row="1"/>
     </Grid>
 </winUiEx:WindowEx>
