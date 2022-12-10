@@ -11,19 +11,20 @@
     xmlns:winUiEx="using:WinUIEx"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid
+        x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <controls:MenuBar
-            x:Name="MenuBar"
+            x:Name="MainMenuBar"
             VerticalAlignment="Top"
             HorizontalAlignment="Stretch"
             Grid.Row="0"/>
         <controls:Notepad
-            x:Name="Notepad"
+            x:Name="MainNotepad"
             Grid.Row="1"/>
     </Grid>
 </winUiEx:WindowEx>
