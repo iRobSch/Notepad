@@ -11,10 +11,16 @@
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
         <MenuBar
             Background="DarkGray"
             VerticalAlignment="Top"
-            HorizontalAlignment="Stretch">
+            HorizontalAlignment="Stretch"
+            Grid.Row="0">
 
             <MenuBarItem
                 Title="File">
@@ -56,5 +62,9 @@
                 <MenuFlyoutItem Text="About"/>
             </MenuBarItem>
         </MenuBar>
+        <TextBox
+            x:Name="TextBox"
+            Grid.Row="1">
+        </TextBox>
     </Grid>
 </winUiEx:WindowEx>
