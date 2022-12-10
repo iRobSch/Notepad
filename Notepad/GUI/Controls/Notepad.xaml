@@ -9,6 +9,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <TextBox></TextBox>
-    
+    <TextBox
+        AcceptsReturn="true"
+        PlaceholderText="Type your notes here..."
+        ScrollViewer.VerticalScrollBarVisibility="Auto"
+        TextWrapping="Wrap"/>
 </UserControl>
