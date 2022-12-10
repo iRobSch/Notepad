@@ -24,7 +24,6 @@
             Title ="Edit">
             <MenuFlyoutItem  
                 x:Name="RedoItem"
-                x:FieldModifier="public"
                 Text="Redo"/>
             <MenuFlyoutItem  
                 x:Name="UndoItem"
