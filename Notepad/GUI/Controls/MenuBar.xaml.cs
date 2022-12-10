@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using Microsoft.UI.Xaml.Controls;
+using Notepad.Actions;
 
 namespace Notepad.GUI.Controls;
 
@@ -17,8 +18,10 @@ public sealed partial class MenuBar
         _disabledItems = new List<MenuFlyoutItem>
         {
             RedoItem, UndoItem, CutItem, CopyItem, PasteItem, DeleteItem, SelectItem, 
-            ReadItem, FindItem, FindNextItem, FindPrevItem, ReplaceItem, PreferencesItem, ImportItem
+            FindItem, FindNextItem, FindPrevItem, ReplaceItem, PreferencesItem, ImportItem
         };
+
+        ReadItem.Click += EditActions.MakeReadOnly; // TODO turn into XML.
 
         this.DisableItems();
     }

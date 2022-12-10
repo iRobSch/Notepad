@@ -10,6 +10,8 @@
     mc:Ignorable="d">
 
     <TextBox
+        x:Name="TextBox"
+        x:FieldModifier="public"
         AcceptsReturn="true"
         PlaceholderText="Type your notes here..."
         ScrollViewer.VerticalScrollBarVisibility="Auto"

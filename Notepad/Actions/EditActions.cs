@@ -1,6 +1,10 @@
-﻿namespace Notepad.Actions;
+﻿using Microsoft.UI.Xaml;
 
-internal class EditActions
+namespace Notepad.Actions;
+
+internal static class EditActions
 {
+    public static GUI.Controls.Notepad Current = GUI.Controls.Notepad.Current;
 
+    public static void MakeReadOnly(object sender, RoutedEventArgs args) => Current.TextBox.IsReadOnly = Current.TextBox.IsReadOnly == false;
 }
