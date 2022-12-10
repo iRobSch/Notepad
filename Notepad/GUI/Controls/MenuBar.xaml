@@ -1,0 +1,54 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<UserControl
+    x:Class="Notepad.GUI.Controls.MenuBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <MenuBar>
+
+        <MenuBarItem
+            Title="File">
+            <MenuFlyoutItem Text="New"/>
+            <MenuFlyoutItem Text="Open"/>
+            <MenuFlyoutItem Text="Save"/>
+            <MenuFlyoutItem Text="Save as"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem Text="Exit"/>
+        </MenuBarItem>
+        <MenuBarItem
+            Title ="Edit">
+            <MenuFlyoutItem Text="Redo"/>
+            <MenuFlyoutItem Text="Undo"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem Text="Cut"/>
+            <MenuFlyoutItem Text="Copy"/>
+            <MenuFlyoutItem Text="Paste"/>
+            <MenuFlyoutItem Text="Delete"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem Text="Select all"/>
+            <MenuFlyoutItem Text="Set read-only"/>
+        </MenuBarItem>
+        <MenuBarItem
+            Title="Search">
+            <MenuFlyoutItem Text="Find"/>
+            <MenuFlyoutItem Text="Find next"/>
+            <MenuFlyoutItem Text="Find previous"/>
+            <MenuFlyoutItem Text="Replace"/>
+        </MenuBarItem>
+        <MenuBarItem
+            Title = "Settings">
+            <MenuFlyoutItem Text="Preferences"/>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem Text="Import"/>
+        </MenuBarItem>
+        <MenuBarItem
+            Title="Help">
+            <MenuFlyoutItem Text="About"/>
+        </MenuBarItem>
+    </MenuBar>
+</UserControl>
