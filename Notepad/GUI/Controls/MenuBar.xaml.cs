@@ -21,6 +21,7 @@ public sealed partial class MenuBar
             FindItem, FindNextItem, FindPrevItem, ReplaceItem, PreferencesItem, ImportItem
         };
 
+        SaveAsItem.Click += (_, _) => FileActions.SaveNewFile();
         Openitem.Click += (_, _) => FileActions.OpenFile();
         ReadItem.Click += EditActions.MakeReadOnly; // TODO turn into XML.
 

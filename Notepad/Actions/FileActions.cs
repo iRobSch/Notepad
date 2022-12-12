@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -9,8 +10,13 @@ namespace Notepad.Actions;
 
 internal class FileActions
 {
+    /// <summary>
+    /// An abbreviated variabele to access to main text box.
+    /// </summary>
     public static GUI.Controls.Notepad Current = GUI.Controls.Notepad.Current;
-
+    /// <summary>
+    /// The window on which to display the various dialogs.
+    /// </summary>
     private static readonly IntPtr Handler = WindowNative.GetWindowHandle(MainWindow.Current);
 
     /// <summary>
@@ -23,7 +29,7 @@ internal class FileActions
             ViewMode = PickerViewMode.Thumbnail,
             SuggestedStartLocation = PickerLocationId.DocumentsLibrary
         };
-        InitializeWithWindow.Initialize(picker, Handler); // Select the window on which to display the dialog.
+        InitializeWithWindow.Initialize(picker, Handler);
         picker.FileTypeFilter.Add(".txt");
         
         StorageFile file = await picker.PickSingleFileAsync();
@@ -31,14 +37,40 @@ internal class FileActions
     }
 
     /// <summary>
-    /// Writes the content of the main text box to a StreamWriter object.
+    /// Opens a file dialog to save the file to the user's computer as a new text file.
     /// </summary>
-    private void WriteToFile()
+    public static async void SaveNewFile()
     {
-        //Stream stream = new FileStream(FileMode.Open);
-        StreamWriter writer = new("Notepad");
-        writer.Write(Current.TextBox.Text);
-        writer.Close();
+        FileSavePicker picker = new()
+        {
+            DefaultFileExtension = ".txt",
+            SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
+            SuggestedFileName = "New file"
+        };
+        InitializeWithWindow.Initialize(picker, Handler);
+        picker.FileTypeChoices.Add("Text file", new List<string> {".txt"});
+
+        StorageFile file = await picker.PickSaveFileAsync();
+        if (file != null) WriteToFile(file);
+    }
+
+    /// <summary>
+    /// Saves the text file without opening a save dialog.
+    /// </summary>
+    public static async void SaveFile()
+    {
+        // TODO
+    }
+
+    /// <summary>
+    /// Writes the content of the main text box to a local text file.
+    /// </summary>
+    /// <param name="file">The file to save the content to.</param>
+    public static async void WriteToFile(StorageFile file)
+    {
+        CachedFileManager.DeferUpdates(file);
+        await FileIO.WriteTextAsync(file, Current.TextBox.Text);
+        // TODO file.Name
     }
 
     /// <summary>
@@ -49,6 +81,6 @@ internal class FileActions
     {
         IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read);
         StreamReader reader = new(stream.AsStream());
-        GUI.Controls.Notepad.Current.TextBox.Text = await reader.ReadToEndAsync();
+        Current.TextBox.Text = await reader.ReadToEndAsync();
     }
 }
