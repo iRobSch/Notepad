@@ -13,12 +13,22 @@
 
         <MenuBarItem
             Title="File">
-            <MenuFlyoutItem Text="New"/>
-            <MenuFlyoutItem Text="Open"/>
-            <MenuFlyoutItem Text="Save"/>
-            <MenuFlyoutItem Text="Save as"/>
+            <MenuFlyoutItem  
+                x:Name="NewItem"
+                Text="New"/>
+            <MenuFlyoutItem 
+                x:Name="Openitem"
+                Text="Open"/>
+            <MenuFlyoutItem  
+                x:Name="SaveItem"
+                Text="Save"/>
+            <MenuFlyoutItem  
+                x:Name="SaveAsItem"
+                Text="Save as"/>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Exit"/>
+            <MenuFlyoutItem  
+                x:Name="Exit"
+                Text="Exit"/>
         </MenuBarItem>
         <MenuBarItem
             Title ="Edit">
