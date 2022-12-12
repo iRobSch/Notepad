@@ -21,6 +21,7 @@
                 Text="Open"/>
             <MenuFlyoutItem  
                 x:Name="SaveItem"
+                x:FieldModifier="public"
                 Text="Save"/>
             <MenuFlyoutItem  
                 x:Name="SaveAsItem"

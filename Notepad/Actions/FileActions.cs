@@ -4,6 +4,7 @@ using System.IO;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Microsoft.UI.Xaml.Controls;
 using WinRT.Interop;
 
 namespace Notepad.Actions;
@@ -11,13 +12,23 @@ namespace Notepad.Actions;
 internal class FileActions
 {
     /// <summary>
-    /// An abbreviated variabele to access to main text box.
+    /// An abbreviated variable to access the main text box.
     /// </summary>
-    public static GUI.Controls.Notepad Current = GUI.Controls.Notepad.Current;
+    public static TextBox Current = GUI.Controls.Notepad.Current.TextBox;
+
     /// <summary>
     /// The window on which to display the various dialogs.
     /// </summary>
     private static readonly IntPtr Handler = WindowNative.GetWindowHandle(MainWindow.Current);
+
+    /// <summary>
+    /// Stores the file on the user's computer to save the content to.
+    /// </summary>
+    private static StorageFile _saveFile;
+    /// <summary>
+    /// Indicates whether the file has been saved before or not.
+    /// </summary>
+    private static bool _saved;
 
     /// <summary>
     /// Opens a file dialog to open a file from the user's computer.
@@ -41,17 +52,23 @@ internal class FileActions
     /// </summary>
     public static async void SaveNewFile()
     {
-        FileSavePicker picker = new()
+        FileSavePicker savePicker = new()
         {
             DefaultFileExtension = ".txt",
             SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
             SuggestedFileName = "New file"
         };
-        InitializeWithWindow.Initialize(picker, Handler);
-        picker.FileTypeChoices.Add("Text file", new List<string> {".txt"});
+        InitializeWithWindow.Initialize(savePicker, Handler);
+        savePicker.FileTypeChoices.Add("Text file", new List<string> {".txt"});
+        savePicker.FileTypeChoices.Add("All files", new List<string> {".*"}); // TODO
 
-        StorageFile file = await picker.PickSaveFileAsync();
-        if (file != null) WriteToFile(file);
+        _saveFile = await savePicker.PickSaveFileAsync();
+        if (_saveFile != null) WriteToFile();
+
+        // This part toggles the SaveItem on the menu bar so the
+        // user can now freely save the file without a save picker.
+        _saved = true;
+        GUI.Controls.MenuBar.Current.SaveItem.IsEnabled = true;
     }
 
     /// <summary>
@@ -59,17 +76,15 @@ internal class FileActions
     /// </summary>
     public static async void SaveFile()
     {
-        // TODO
+        if (_saved) await FileIO.WriteTextAsync(_saveFile, Current.Text);
     }
 
     /// <summary>
     /// Writes the content of the main text box to a local text file.
     /// </summary>
-    /// <param name="file">The file to save the content to.</param>
-    public static async void WriteToFile(StorageFile file)
+    public static async void WriteToFile()
     {
-        CachedFileManager.DeferUpdates(file);
-        await FileIO.WriteTextAsync(file, Current.TextBox.Text);
+        await FileIO.WriteTextAsync(_saveFile, Current.Text);
         // TODO file.Name
     }
 
@@ -81,6 +96,6 @@ internal class FileActions
     {
         IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read);
         StreamReader reader = new(stream.AsStream());
-        Current.TextBox.Text = await reader.ReadToEndAsync();
+        Current.Text = await reader.ReadToEndAsync();
     }
 }
